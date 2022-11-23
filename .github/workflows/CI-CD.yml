@@ -8,20 +8,8 @@ jobs:
     name: Install Dependancies
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: |
-            **/public
-            **/.cache
-          key: node-cache
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: 'yarn'
 
-      # Install your dependencies (with yarn, npm no matter)
-      - run: yarn install
+      - run: pnpm install
         name: Install dependencies
 
   unit-tests:
@@ -33,11 +21,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'yarn'
+          cache: 'pnpm'
 
-      - run: yarn install
+      - run: pnpm install
         name: Install dependencies
-      - run: yarn test --passWithNoTests
+      - run: pnpm test --passWithNoTests
         name: Running E2E tests
 
   test:
@@ -51,13 +39,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run Playwright tests
-        run: yarn playwright test
+        run: pnpm playwright test
 
       - uses: actions/upload-artifact@v3
         if: always()
