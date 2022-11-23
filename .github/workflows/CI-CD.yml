@@ -3,24 +3,14 @@ name: Continuous Integration
 on: push
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Install Dependancies
-    steps:
-      - uses: actions/checkout@v3
-
-      - run: pnpm install
-        name: Install dependencies
-
   unit-tests:
-    needs: build
     runs-on: ubuntu-latest
     name: Unit Tests
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.x
           cache: 'pnpm'
 
       - run: pnpm install
@@ -29,7 +19,6 @@ jobs:
         name: Running E2E tests
 
   test:
-    needs: build
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: E2E Tests
