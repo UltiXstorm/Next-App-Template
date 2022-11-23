@@ -1,0 +1,67 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Install Dependancies
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            **/public
+            **/.cache
+          key: node-cache
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'pnpm'
+
+      # Install your dependencies (with yarn, npm no matter)
+      - run: pnpm install
+        name: Install dependencies
+
+  unit-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - run: pnpm install
+        name: Install dependencies
+      - run: pnpm test --passWithNoTests
+        name: Running E2E tests
+
+  test:
+    needs: build
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    name: E2E Tests
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Playwright tests
+        run: pnpm playwright test
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
