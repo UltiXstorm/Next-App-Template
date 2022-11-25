@@ -3,11 +3,30 @@ name: Continuous Integration
 on: push
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Install dependencies
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.X
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
   unit-tests:
     runs-on: ubuntu-latest
     name: Unit Tests
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
@@ -15,6 +34,7 @@ jobs:
 
       - run: pnpm install
         name: Install dependencies
+
       - run: pnpm test --passWithNoTests
         name: Running E2E tests
 
@@ -24,6 +44,9 @@ jobs:
     name: E2E Tests
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
