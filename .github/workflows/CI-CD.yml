@@ -20,6 +20,7 @@ jobs:
         run: pnpm install
 
   unit-tests:
+    needs: build
     runs-on: ubuntu-latest
     name: Unit Tests
     steps:
@@ -35,10 +36,11 @@ jobs:
       - run: pnpm install
         name: Install dependencies
 
-      - run: pnpm test --passWithNoTests
+      - run: pnpm test
         name: Running E2E tests
 
-  test:
+  e2e-test:
+    needs: build
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: E2E Tests
