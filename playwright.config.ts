@@ -68,11 +68,11 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the e2e */
-   webServer: {
+   webServer: process.env.CI ? {
      command: 'pnpm serve',
      port: 3000,
      timeout: 120 * 1000,
-   },
+   }: undefined,
 };
 
 export default config;
