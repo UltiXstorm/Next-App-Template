@@ -60,7 +60,7 @@ jobs:
       - run: pnpm install
 
         name: Running E2E e2e
-      - run: pnpm test:ci
+      - run: pnpm test:ci --passWithNoTests
 
 
   e2e-test:
