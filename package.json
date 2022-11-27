@@ -19,8 +19,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "format:check": "prettier --check .",
-    "format:fix": "prettier --write .",
-    "e2e": "playwright test"
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "next": "13.0.4",

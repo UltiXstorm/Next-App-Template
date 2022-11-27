@@ -61,14 +61,8 @@ jobs:
       - name: Install browser
         run: pnpm playwright install --with-deps
 
-      - name: Install build
-        run: pnpm build
-
-      - name: Install build
-        run: pnpm start
-
       - name: Run Playwright e2e
-        run: pnpm e2e
+        run: pnpm playwright test
 
       - uses: actions/upload-artifact@v3
         if: always()

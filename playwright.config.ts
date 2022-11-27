@@ -55,6 +55,14 @@ const config: PlaywrightTestConfig = {
        },
     },
   ],
+
+
+
+   webServer: process.env.CI ? {
+     command: 'pnpm serve',
+     port: 3000,
+     timeout: 60000,
+   }: undefined,
 };
 
 export default config;
