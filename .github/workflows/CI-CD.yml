@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 jobs:
-  build:
+  dependencies:
     runs-on: ubuntu-latest
     name: Install dependencies
     steps:
@@ -19,8 +19,31 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+  build:
+    runs-on: ubuntu-latest
+    name: Build Project for E2E
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.X
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install browser
+        run: pnpm playwright install --with-deps
+
+      - name: Build Project
+        run: pnpm build
+
   unit-tests:
-    needs: build
+    needs: dependencies
     runs-on: ubuntu-latest
     name: Unit Tests
     steps:
@@ -33,14 +56,15 @@ jobs:
           node-version: 16.x
           cache: 'pnpm'
 
-      - run: pnpm install
         name: Install dependencies
+      - run: pnpm install
 
-      - run: pnpm test:ci
         name: Running E2E e2e
+      - run: pnpm test:ci
+
 
   e2e-test:
-    needs: build
+    needs: [dependencies, build]
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: E2E Tests
