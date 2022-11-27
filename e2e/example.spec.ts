@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test('Homepage had a title like Create Next App', async ({ page }) => {
+test.describe('Init app', () => {
 
-  await page.goto('http://localhost:3000/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Create Next App/);
+  test('Check Title', async ({ page }) => {
+    await page.goto('http://localhost:3000');
+    await expect(page).toHaveTitle(/Create Next App/);
+  });
 });
