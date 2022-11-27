@@ -58,8 +58,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install browser
+        run: pnpm playwright install
+
       - name: Run Playwright e2e
-        run: pnpm playwright test
+        run: pnpm e2e
 
       - uses: actions/upload-artifact@v3
         if: always()
