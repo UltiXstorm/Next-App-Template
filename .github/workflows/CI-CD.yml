@@ -37,7 +37,7 @@ jobs:
         name: Install dependencies
 
       - run: pnpm test
-        name: Running E2E tests
+        name: Running E2E e2e
 
   e2e-test:
     needs: build
@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Playwright tests
+      - name: Run Playwright e2e
         run: pnpm playwright test
 
       - uses: actions/upload-artifact@v3
