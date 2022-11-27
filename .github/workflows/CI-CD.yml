@@ -61,6 +61,9 @@ jobs:
       - name: Install browser
         run: pnpm playwright install
 
+      - name: Install deps
+        run: pnpm playwright install-deps
+
       - name: Run Playwright e2e
         run: pnpm e2e
 
