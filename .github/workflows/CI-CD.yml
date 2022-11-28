@@ -72,9 +72,8 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-
   e2e-test2:
-    need: dep
+    need: deps
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
