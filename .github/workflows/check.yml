@@ -1,10 +1,6 @@
 name: Dev Checks
 
-on:
-  pull_request:
-    - edited
-    - opened
-    - reopened
+on: push
 
 check-pr-title:
   runs-on: ubuntu-latest
