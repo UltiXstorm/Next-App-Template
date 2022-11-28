@@ -12,7 +12,8 @@ import { devices } from '@playwright/test';
  */
 const config: PlaywrightTestConfig = {
   testDir: './e2e',
-  timeout: 30000,
+  /* Maximum time one test can run for. */
+  timeout: 30 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -20,20 +21,28 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 5000
   },
+  /* Run tests in files in parallel */
   fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
+  /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 3 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
-    browserName: 'chromium',
-    baseURL: 'http://localhost:3000',
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    // baseURL: 'http://localhost:3000',
+
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: true,
   },
 
+  /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
@@ -48,21 +57,51 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Firefox'],
       },
     },
+
     {
-       name: 'Mobile Chrome',
-       use: {
-         ...devices['Pixel 5'],
-       },
+      name: 'webkit',
+      use: {
+        ...devices['Desktop Safari'],
+      },
     },
+
+    /* Test against mobile viewports. */
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: {
+    //     ...devices['Pixel 5'],
+    //   },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: {
+    //     ...devices['iPhone 12'],
+    //   },
+    // },
+
+    /* Test against branded browsers. */
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: {
+    //     channel: 'msedge',
+    //   },
+    // },
+    // {
+    //   name: 'Google Chrome',
+    //   use: {
+    //     channel: 'chrome',
+    //   },
+    // },
   ],
 
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  // outputDir: 'test-results/',
 
-
-   webServer: process.env.CI ? {
+  /* Run your local dev server before starting the tests */
+  webServer: {
      command: 'pnpm serve',
      port: 3000,
-     timeout: 60000,
-   }: undefined,
+  },
 };
 
 export default config;

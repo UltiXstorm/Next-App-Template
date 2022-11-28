@@ -19,7 +19,8 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "format:check": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:fix": "prettier --write .",
+    "e2e": "dlx playwright test"
   },
   "dependencies": {
     "next": "13.0.4",
@@ -27,7 +28,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.28.0",
+    "@playwright/test": "1.28.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/node": "18.11.9",
