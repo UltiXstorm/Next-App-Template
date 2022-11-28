@@ -1,21 +1,38 @@
-name: Playwright Tests
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+name: Continuous Integration
+
+on: push
+
 jobs:
-  test:
-    timeout-minutes: 60
+  deps:
     runs-on: ubuntu-latest
+    name: Install dependencies
     steps:
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
           version: 7
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.X
+          node-version: 16
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+  e2e:
+    name: E2E Tests / Playwright
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
