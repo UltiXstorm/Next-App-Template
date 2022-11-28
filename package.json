@@ -20,7 +20,7 @@
     "test:ci": "jest --ci",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
-    "e2e": "dlx playwright test"
+    "e2e": "playwright test"
   },
   "dependencies": {
     "next": "13.0.4",
