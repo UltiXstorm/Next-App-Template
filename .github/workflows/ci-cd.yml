@@ -19,6 +19,26 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+  unit-tests:
+    needs: deps
+    runs-on: ubuntu-latest
+    name: Unit Tests - Jest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - run: pnpm install
+        name: Install dependencies
+
+      - run: pnpm test:ci --passWithNoTests
+        name: Running E2E tests
+
   e2e:
     needs: deps
     name: E2E Tests - Playwright
