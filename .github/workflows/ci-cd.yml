@@ -36,7 +36,7 @@ jobs:
       - run: pnpm install
         name: Install dependencies
 
-      - run: pnpm test:ci
+      - run: pnpm test:ci --passWithNoTests
         name: Running E2E tests
 
   e2e:
