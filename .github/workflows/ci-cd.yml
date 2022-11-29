@@ -21,7 +21,7 @@ jobs:
 
   e2e:
     needs: deps
-    name: E2E Tests / Playwright
+    name: E2E Tests - Playwright
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
