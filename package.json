@@ -10,6 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "serve": "pnpm build & pnpm start",
     "lint": "next lint",
     "e2e": "playwright test",
     "e2e:results": "pnpm e2e & playwright show-report",
