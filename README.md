@@ -1,13 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project
+
+This project is create with a create next app.
+It's setup on TypeScript and with Playwright and Jest for tests.
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm install
+pnpm dev # Your local dev
+pnpm test # Jest
+pnpm e2e # Playwright
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
