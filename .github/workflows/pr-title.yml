@@ -1,10 +1,6 @@
 name: Check PR Title
 
-on:
-  pull_request:
-    - edited
-    - opened
-    - reopened
+on: pull_request
 
 check-pr-title:
   runs-on: ubuntu-latest
