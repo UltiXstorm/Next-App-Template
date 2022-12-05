@@ -48,14 +48,14 @@ const config: PlaywrightTestConfig = {
       name: 'chromium',
       grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Chrome'], viewport: macbookPro14Viewport,
+        ...devices['Desktop Chrome']
       },
     },
     {
       name: 'firefox',
       grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Firefox'], viewport: macbookPro14Viewport
+        ...devices['Desktop Firefox']
       },
     },
 
@@ -63,7 +63,7 @@ const config: PlaywrightTestConfig = {
       name: 'safari',
       grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Safari'], viewport: macbookPro14Viewport
+        ...devices['Desktop Safari']
       },
     },
     {

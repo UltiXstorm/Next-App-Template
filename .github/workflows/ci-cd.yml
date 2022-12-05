@@ -19,12 +19,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build Project
+        run: pnpm build
+
+      - run: tar czf output.tar.gz .output
+
       - uses: actions/upload-artifact@v3
-        if: always()
         with:
           name: output
-          path: ./
-          retention-days: 7
+          path: output.tar.gz
+          retention-days: 1
 
   lint:
     runs-on: ubuntu-latest
