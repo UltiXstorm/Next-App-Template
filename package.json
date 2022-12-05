@@ -13,7 +13,7 @@
     "serve": "pnpm build & pnpm start",
     "lint": "next lint",
     "e2e": "playwright test",
-    "e2e:results": "pnpm e2e & playwright show-report",
+    "e2e:results": "pnpm tests/e2e & playwright show-report",
     "test": "jest --watch",
     "test:ci": "jest --ci"
   },
