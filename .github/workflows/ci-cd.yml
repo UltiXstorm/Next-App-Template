@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 jobs:
-  deps:
+  build:
     runs-on: ubuntu-latest
     name: Install dependencies
     steps:
@@ -18,6 +18,12 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: output
+          retention-days: 7
 
   lint:
     runs-on: ubuntu-latest
@@ -39,7 +45,7 @@ jobs:
         run: pnpm lint
 
   unit-tests:
-    needs: deps
+    needs: build
     runs-on: ubuntu-latest
     name: Unit Tests - Jest
     steps:
@@ -59,10 +65,24 @@ jobs:
         name: Running E2E tests
 
   e2e:
-    needs: deps
+    needs: build
     name: E2E Tests - Playwright
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: chrome
+            browser: chromium
+          - project: firefox
+            browser: firefox
+          - project: safari
+            browser: webkit
+          - project: android
+            browser: chromium
+          - project: iphone
+            browser: webkit
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -74,18 +94,18 @@ jobs:
           node-version: 16
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+      - uses: actions/download-artifact@v3
+        with:
+          name: output
+      - run: tar xzf output.tar.gz
 
-      - name: Install Playwright Browsers
-        run: pnpm playwright install --with-deps
-
-      - name: Run Playwright tests
-        run: pnpm dlx playwright test
+      - run: pnpm install
+      - run: pnpm playwright install --with-deps ${{ matrix.browser }}
+      - run: pnpm dlx playwright test --project=${{ matrix.project }}
 
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: playwright-report
+          name: ${{ matrix.project }}-test-results
           path: playwright-report/
-          retention-days: 30
+          retention-days: 7

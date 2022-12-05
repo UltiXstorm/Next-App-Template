@@ -13,7 +13,7 @@ import { devices } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './e2e',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 10 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -46,52 +46,36 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'chromium',
+      grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Chrome'], viewport: macbookPro14Viewport,
       },
     },
-
     {
       name: 'firefox',
+      grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices['Desktop Firefox'], viewport: macbookPro14Viewport
       },
     },
 
     {
-      name: 'webkit',
+      name: 'safari',
+      grepInvert: /@mobile/,
       use: {
-        ...devices['Desktop Safari'],
+        ...devices['Desktop Safari'], viewport: macbookPro14Viewport
       },
     },
-
-    /* Test against mobile viewports. */
     {
-      name: 'Mobile Chrome',
-      use: {
-        ...devices['Pixel 5'],
-      },
+      name: "android",
+      grepInvert: /@desktop/,
+      use: { ...devices["Galaxy S5"] }
     },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
+    {
+      name: "iphone",
+      grepInvert: /@desktop/,
+      use: { ...devices["iPhone 12"] }
+    }
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
@@ -99,8 +83,9 @@ const config: PlaywrightTestConfig = {
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm dev',
+    command: 'pnpm start',
     port: 3000,
+    reuseExistingServer: !process.env.CI
   },
 };
 
