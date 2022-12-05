@@ -7,12 +7,6 @@ const createJestConfig = nextJest({ dir: './' })
 // Any custom config you want to pass to Jest
 const customJestConfig = {
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-	moduleNameMapper: {
-		// Handle module aliases (this will be automatically configured for you soon)
-		'^@/components/(.*)$': '<rootDir>/components/$1',
-		
-		'^@/pages/(.*)$': '<rootDir>/pages/$1',
-	},
 	modulePathIgnorePatterns: ["<rootDir>/e2e"],
 	testEnvironment: 'jest-environment-jsdom',
 }
