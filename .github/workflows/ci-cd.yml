@@ -23,6 +23,7 @@ jobs:
         if: always()
         with:
           name: output
+          path: ./
           retention-days: 7
 
   lint:
