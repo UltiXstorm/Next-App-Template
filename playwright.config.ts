@@ -45,7 +45,7 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'chrome',
       grepInvert: /@mobile/,
       use: {
         ...devices['Desktop Chrome']
@@ -77,9 +77,6 @@ const config: PlaywrightTestConfig = {
       use: { ...devices["iPhone 12"] }
     }
   ],
-
-  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
   webServer: {
