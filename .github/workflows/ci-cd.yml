@@ -22,7 +22,7 @@ jobs:
       - name: Build Project
         run: pnpm build
 
-      - run: tar czf output.tar.gz .output
+      - run: tar czf output.tar.gz .next
 
       - uses: actions/upload-artifact@v3
         with:
