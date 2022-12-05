@@ -106,7 +106,7 @@ jobs:
 
       - run: pnpm install
       - run: pnpm playwright install --with-deps ${{ matrix.browser }}
-      - run: pnpm dlx playwright test --project=${{ matrix.project }}
+      - run: pnpm playwright test --project=${{ matrix.project }}
 
       - uses: actions/upload-artifact@v3
         if: always()
