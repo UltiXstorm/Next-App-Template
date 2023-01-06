@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Check PR Title
     steps:
-      - uses: Slashgear/action-check-pr-title@v4.0.0
+      - uses: Slashgear/action-check-pr-title@v4.2.0
         with:
           regex: '(revert: )?(chore|feat|fix|test)((.*)): (.*)'
