@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Install dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 7
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check Lint
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 7
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Unit Tests - Jest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 7
@@ -89,7 +89,7 @@ jobs:
           - project: iphone
             browser: webkit
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 7
