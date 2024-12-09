@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@playwright/test': 1.44.0
+  '@playwright/test': 1.49.0
   '@testing-library/jest-dom': 5.17.0
   '@testing-library/react': 13.4.0
   '@types/node': 18.19.67
@@ -22,7 +22,7 @@ dependencies:
   react-dom: 18.3.1_react@18.3.1
 
 devDependencies:
-  '@playwright/test': 1.44.0
+  '@playwright/test': 1.49.0
   '@testing-library/jest-dom': 5.17.0
   '@testing-library/react': 13.4.0_nnrd3gsncyragczmpvfhocinkq
   '@types/node': 18.19.67
@@ -893,12 +893,12 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@playwright/test/1.44.0:
-    resolution: {integrity: sha512-rNX5lbNidamSUorBhB4XZ9SQTjAqfe5M+p37Z8ic0jPFBMo5iCtQz1kRWkEMg+rYOKSlVycpQmpqjSFq7LXOfg==}
-    engines: {node: '>=16'}
+  /@playwright/test/1.49.0:
+    resolution: {integrity: sha512-DMulbwQURa8rNIQrf94+jPJQ4FmOVdpE5ZppRNvWVjvhC+6sOeo28r8MgIpQRYouXRtt/FCCXU7zn20jnHR4Qw==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright: 1.44.0
+      playwright: 1.49.0
     dev: true
 
   /@rushstack/eslint-patch/1.2.0:
@@ -3881,18 +3881,18 @@ packages:
       find-up: 4.1.0
     dev: true
 
-  /playwright-core/1.44.0:
-    resolution: {integrity: sha512-ZTbkNpFfYcGWohvTTl+xewITm7EOuqIqex0c7dNZ+aXsbrLj0qI8XlGKfPpipjm0Wny/4Lt4CJsWJk1stVS5qQ==}
-    engines: {node: '>=16'}
+  /playwright-core/1.49.0:
+    resolution: {integrity: sha512-R+3KKTQF3npy5GTiKH/T+kdhoJfJojjHESR1YEWhYuEKRVfVaxH3+4+GvXE5xyCngCxhxnykk0Vlah9v8fs3jA==}
+    engines: {node: '>=18'}
     hasBin: true
     dev: true
 
-  /playwright/1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
-    engines: {node: '>=16'}
+  /playwright/1.49.0:
+    resolution: {integrity: sha512-eKpmys0UFDnfNb3vfsf8Vx2LEOtflgRebl0Im2eQQnYMA4Aqd+Zw8bEOB+7ZKvN76901mRnqdsiOGKxzVTbi7A==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright-core: 1.44.0
+      playwright-core: 1.49.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
